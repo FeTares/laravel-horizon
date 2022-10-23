@@ -1,6 +1,8 @@
 <?php
 
 use App\Jobs\ExampleJob;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +24,11 @@ Route::get('/test-job', function() {
     ExampleJob::dispatch(['example' => 'value']);
 
     return 'ok';
+});
+
+Route::get('/test-email', function() {
+    Mail::to('felipe@dev.com')
+        ->send(new TestMail);
+
+    return 'ok - email sended';
 });
